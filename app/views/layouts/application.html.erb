@@ -11,8 +11,14 @@
   </head>
 
   <body>
-    <p class="notice"><%=notice%></p>
-    <p class="alert"><%=alert%></p>
+    <%=render 'layouts/navbar'%>
+    <%if notice%>
+      <%=render "layouts/messages", message: notice, alert_typ: "alert-info"%>
+    <%elsif alert%>
+      <%=render "layouts/messages", message: alert, alert_typ: "alert-warning"%>
+    <%end%>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>
