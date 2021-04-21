@@ -1,0 +1,9 @@
+<%if @stock%>
+  <div class="card">
+    <div class="card-body">
+      <strong>Ticker:</strong> <%=@stock.ticker_symbol%>
+      <strong>Company:</strong> <%=@stock.name%>
+      <strong>Price:</strong> <%=@stock.price%>
+    </div>
+  </div>
+<%end%>

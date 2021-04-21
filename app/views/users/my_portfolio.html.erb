@@ -1,0 +1,14 @@
+<h2 class="my-3 text-center"><%= current_user.email%>'s Portfolio</h2>
+<h3 class="my-3">Search for Stocks</h3>
+  <%= form_with url: "/stocks/search_stock",class: " row", id: "my_portfolio_search_form",method: :get, local: false do |f|%>
+    <div class="col-11  form-group zero-padding-rigth">
+      <%=f.text_field :stock,placeholder: "Stock",autofocus: true, class: "form-control "%>
+    </div>
+    <div class="col-1 zero-padding-left">
+      <%= button_tag type: 'submit', class: "btn btn-info  " do %>
+        <i class="fas fa-search 4x" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  <%end%>
+  <div id="results">
+  </div>

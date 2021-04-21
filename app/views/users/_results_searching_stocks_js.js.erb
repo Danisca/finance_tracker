@@ -1,0 +1,14 @@
+console.log('hi from js view');
+
+function showResults(data){
+  
+  document.getElementById("results").innerHTML = data; 
+  
+}
+
+<%if @stock %>
+    showResults('<%=j render 'users/result_searching_stocks.html'%>');
+<%else%>
+    showResults(
+      '<%=j render 'layouts/messages.html', message: alert, alert_typ: 'alert-warning'%>')
+<%end%>
