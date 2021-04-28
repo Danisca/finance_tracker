@@ -1,9 +1,22 @@
 <%if @stock%>
-  <div class="card">
+  <div class="card col-7">
     <div class="card-body">
       <strong>Ticker:</strong> <%=@stock.ticker_symbol%>
       <strong>Company:</strong> <%=@stock.name%>
       <strong>Price:</strong> <%=@stock.price%>
+    <span class="ml-1">
+    <%if current_user.can_track_stocks?(@stock.ticker_symbol) %>
+      <%=link_to "add",user_stocks_path(user: current_user,
+        ticker: @stock.ticker_symbol), method: :post, 
+       class: "btn btn-success"%>
+   <%else%>
+     <span class="badge badge-warning">
+       you are alredy tracking
+       <%= "this stock" if current_user.can_track_stocks? @stock.ticker_symbol%>
+       <%= "10 stocks" if current_user.under_stock_limit?%>
+     </span>
+  <%end%>
+    </span>
     </div>
   </div>
 <%end%>

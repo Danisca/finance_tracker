@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_stocks, only: [:create,:destroy]
   get 'my_portfolio', to: "users#my_portfolio"
   get 'stocks/search_stock', to: "stocks#search_stock"
   devise_for :users

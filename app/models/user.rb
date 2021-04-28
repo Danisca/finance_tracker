@@ -3,4 +3,30 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :user_stocks
+  has_many :stocks, through: :user_stocks
+
+  def stock_alredy_tracked?(ticker_symbol)
+    return false unless !stocks.empty?
+    stock = Stock.check_db(ticker_symbol)
+    if !stock.nil?
+      UserStock.where(stock_id: stock.id,user_id: id).exists?
+    else 
+      false
+    end
+  end
+
+  #restriction by requirements an user can't track more than 10 stocks
+  def under_stock_limit?
+    stocks.count < 10 
+  end
+  
+  def can_track_stocks?(ticker_symbol)
+    if (stock_alredy_tracked?(ticker_symbol) == false) and under_stock_limit?  
+      true
+    else
+      false
+    end
+  end
+
 end
