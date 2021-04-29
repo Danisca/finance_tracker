@@ -1,4 +1,4 @@
-<h2 class="my-3 text-center"><%= current_user.email%>'s Portfolio</h2>
+<h2 class="my-3 text-center"><%= current_user.full_name%>'s Portfolio</h2>
 <h3 class="my-3">Search for Stocks</h3>
   <%= form_with url: "/stocks/search_stock",class: " row", id: "my_portfolio_search_form",method: :get, local: false do |f|%>
     <div class="col-11  form-group zero-padding-rigth">

@@ -29,4 +29,12 @@ class User < ApplicationRecord
     end
   end
 
+  def full_name
+   if fname or lname
+    "#{fname} #{lname}"
+   else
+     "Anonymous"
+   end
+  end
+
 end
