@@ -31,6 +31,15 @@ class User < ApplicationRecord
     end
   end
 
+  def alredy_following?(friend)
+    friend = Friendship.where(friend_id: friend.id, user_id: id)
+    if !friend.blank?
+      return true
+    end
+    false
+  end
+
+
   def full_name
    if fname or lname
     "#{fname} #{lname}"

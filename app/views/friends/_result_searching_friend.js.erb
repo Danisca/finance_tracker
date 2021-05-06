@@ -1,0 +1,12 @@
+console.log('<%=@friends%>');
+
+function showResults(data){
+  document.getElementById('results').innerHTML = data; 
+}
+
+<%if @friends%>
+    showResults('<%=j render 'friends/result_seraching_friend'  %>');
+<%else%>
+  showResults(
+      '<%=j render 'layouts/messages', message: alert, alert_typ: 'alert-warning'%>');
+<%end%>

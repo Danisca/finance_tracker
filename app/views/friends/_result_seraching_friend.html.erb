@@ -1,0 +1,25 @@
+
+<%if @friends%>
+  <%@friends.each do |friend|%>
+    <%if friend.id != current_user.id%>
+  <div class="card col-9 mt-2">
+    <div class="card-body">
+      <strong>Email:</strong> <%=friend.email%>
+      <strong>Name:</strong> <%=friend.fname%>
+      <strong>Last Name:</strong> <%=friend.lname%>
+      <%=link_to "view profile",user_path(friend), 
+       class: "btn btn-success"%>
+    <span class="ml-1">
+    <%if !current_user.alredy_following?(friend) %>
+      <%=link_to "add",friends_path(user: current_user,
+        friend: friend), method: :post, 
+       class: "btn btn-success"%>
+   <%else%>
+     <span class="badge badge-warning">Alredy following</span>
+    <%end%>
+    </span>
+    </div>
+  </div>
+<%end%>
+<%end%>
+<%end%>

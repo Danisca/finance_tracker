@@ -1,0 +1,15 @@
+<h3 class="text-center mt-3 mb-3"><%=current_user.full_name%>'s Friends list</h3>
+<%= form_with url: "/friends/search_friend", method: :get, local: false, class: "row" do |f|%>
+  <div class=" col-11 form-group zero-padding-rigth">
+    <%=f.text_field :friend, placeholder: "Friend",autofocus: true, class: "form-control"%>
+  </div>
+  <div class="col-1 zero-padding-left">
+  <%=button_tag type: 'submit',class: "btn btn-info" do %>
+      <i class="fas fa-search 4x" aria-hidden="true"></i>
+  <%end%>
+  </div> 
+<%end%>
+<div id="results" class="mb-3">
+</div>
+<%= render 'friends/friends_list'%>
+
